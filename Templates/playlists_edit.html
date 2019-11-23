@@ -4,7 +4,7 @@
 {% block content %}
 <form method='POST' action='/playlists/{{playlist._id}}'>
     <fieldset>
-    <legend>New Playlist</legend>
+    <legend>Edit Playlist</legend>
     <!-- TITLE -->
     <p>
         <label for='title'>Title</label><br>
@@ -14,6 +14,10 @@
         <label for='description'>Description</label><br>
         <input type='text' name='description' />
     </p>
+    <p>
+      <label for='video_id'>Video</label><br>
+      <input type='url' name='video' />
+      </p>
     </fieldset>
 
     <!-- BUTTON -->
