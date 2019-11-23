@@ -44,12 +44,12 @@ def playlists_show(playlist_id):
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     return render_template('playlists_show.html', playlist=playlist)
 
-
-@app.route('/playlists/<playlist_id>/edit', methods=['POST'])
+@app.route('/playlists/<playlist_id>/edit')
 def playlists_edit(playlist_id):
-    """Edit a single playlist."""
+    """Show the edit form for a playlist."""
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
-    return render_template('playlists_edit.html', playlist=playlist)
+    # Add the title parameter here
+    return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist')
 
 @app.route('/playlists/<playlist_id>', methods=['POST'])
 def playlists_update(playlist_id):
