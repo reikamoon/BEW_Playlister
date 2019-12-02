@@ -9,6 +9,7 @@ host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
 client = MongoClient()
 db = client.Playlister
 playlists = db.playlists
+comments = db.comments
 
 def video_url_creator(id_lst):
     videos = []
@@ -80,6 +81,11 @@ def playlists_delete(playlist_id):
     """Delete one playlist."""
     playlists.delete_one({'_id': ObjectId(playlist_id)})
     return redirect(url_for('playlists_index'))
+
+@app.route('/playlists/comments', methods=['POST'])
+def comments_new():
+    """Submit a new comment."""
+    return 'playlists comment'
 
 
 if __name__ == '__main__':
