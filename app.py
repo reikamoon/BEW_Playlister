@@ -25,6 +25,17 @@ def playlists_index():
     # Update this line
     return render_template('playlists_index.html', playlists=playlists.find())
 
+@app.route('/playlists/new')
+def playlists_new():
+    """Create a new playlist."""
+    playlist = {
+        'title': "",
+        'description': "",
+        'videos': "",
+        'video_ids': ""
+    }
+    return render_template('playlists_new.html',playlist=playlist)
+
 @app.route('/playlists', methods=['POST'])
 def playlists_submit():
     """Submit a new playlist."""
@@ -52,7 +63,7 @@ def playlists_edit(playlist_id):
     """Show the edit form for a playlist."""
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     print(playlist)
-    video_ids = "\n".join(playlist.video_ids)
+    video_ids = "\n".join(playlist['video_ids'])
     # Add the title parameter here
     title = request.form.get('title')
     return render_template('playlists_edit.html', playlist=playlist, video_ids=video_ids, title='Edit Playlist')
@@ -85,7 +96,16 @@ def playlists_delete(playlist_id):
 @app.route('/playlists/comments', methods=['POST'])
 def comments_new():
     """Submit a new comment."""
-    return 'playlists comment'
+    # TODO: Fill in the code here to build the comment object,
+    # and then insert it into the MongoDB comments collection
+    my_comments = request.form.get('comments').split()
+    comment = {
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
+    }
+    comments.insert_one(comment)
+    print(comment)
+    return redirect(url_for('playlists_show', playlist_id=request.form.get('playlist_id')))
 
 
 if __name__ == '__main__':
