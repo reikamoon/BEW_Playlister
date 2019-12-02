@@ -48,9 +48,11 @@ def playlists_show(playlist_id):
 def playlists_edit(playlist_id):
     """Show the edit form for a playlist."""
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
+    print(playlist)
+    video_ids = "\n".join(playlist.video_ids)
     # Add the title parameter here
     title = request.form.get('title')
-    return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist')
+    return render_template('playlists_edit.html', playlist=playlist, video_ids=video_ids, title='Edit Playlist')
 
 @app.route('/playlists/<playlist_id>', methods=['POST'])
 def playlists_update(playlist_id):
@@ -70,6 +72,12 @@ def playlists_update(playlist_id):
         {'$set': updated_playlist})
     # take us back to the playlist's show page
     return redirect(url_for('playlists_show', playlist_id=playlist_id))
+
+@app.route('/playlists/<playlist_id>/delete', methods=['POST'])
+def playlists_delete(playlist_id):
+    """Delete one playlist."""
+    playlists.delete_one({'_id': ObjectId(playlist_id)})
+    return redirect(url_for('playlists_index'))
 
 
 if __name__ == '__main__':
