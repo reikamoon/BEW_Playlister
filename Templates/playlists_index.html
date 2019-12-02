@@ -3,7 +3,13 @@
 
 {% block content %}
    <h1>Playlists</h1>
-
+   <!-- Add the following classes to their appropriate elements  -->
+   <div class='row'>
+       {% for playlist in playlists %}
+           <div class='col-md-3'>
+               <h2><a href='/playlists/{{ playlist._id }}'>{{ playlist.title }}</a></h2>
+               <small>{{ playlist.description }}</small>
+           </div>
 <!-- New link here -->
 <a href='/playlists/new'>New Playlist</a>
 
@@ -11,4 +17,5 @@
    <h2><a href='/playlists/{{ playlist._id }}'>{{ playlist.title }}</a></h2>
        <h3>{{ playlist.description }}</h3>
    {% endfor %}
+   </div>
 {% endblock %}
