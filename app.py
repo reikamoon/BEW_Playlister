@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from bson.objectid import ObjectIdå
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
@@ -10,7 +11,6 @@ client = MongoClient()
 db = client.Playlister
 playlists = db.playlists
 comments = db.comments
-
 
 def video_url_creator(id_lst):
     videos = []
@@ -108,7 +108,6 @@ def comments_new():
     comments.insert_one(comment)
     print(comment)
     return redirect(url_for('playlists_show', playlist_id=request.form.get('playlist_id')))
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
