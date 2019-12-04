@@ -24,8 +24,8 @@ def video_url_creator(id_lst):
 def playlists_index():
     """Show all playlists."""
     # Update this line
-    # return render_template('playlists_index.html', playlists=playlists.find())
-    return "HELLO WORLD"
+    return render_template('playlists_index.html', playlists=playlists.find())
+    # return "HELLO WORLD"
 
 @app.route('/playlists/new')
 def playlists_new():
