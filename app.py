@@ -4,8 +4,7 @@ from pymongo import MongoClient
 import os
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
-client = MongoClient(host=f'{host}?retryWrites=false')
-# db = client.Playlister
+client = MongoClient(host=host)
 db = client.get_default_database()
 playlists = db.playlists
 comments = db.comments
