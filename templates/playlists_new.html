@@ -1,0 +1,17 @@
+<!-- templates/playlists_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/playlists'>
+    <fieldset>
+    <legend>New Playlist</legend>
+    <!-- TITLE -->
+    {% include 'partials/playlists_form.html' %}
+    </fieldset>
+
+    <!-- BUTTON -->
+    <div class='form-group'>
+                    <button class='btn btn-primary' type='submit'>Save Playlist</button>
+                </div>
+</form>
+{% endblock %}
