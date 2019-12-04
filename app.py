@@ -26,7 +26,7 @@ def playlists_index():
     """Show all playlists."""
     # Update this line
     # return render_template('playlists_index.html', playlists=playlists.find())
-    return render_template('home.html')
+    return "HELLO WORLD"
 
 @app.route('/playlists/new')
 def playlists_new():
