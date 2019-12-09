@@ -32,7 +32,7 @@ def playlists_new():
     playlist = {
         'title': "",
         'description': "",
-        'videos': "",
+        'image_url': "",
         'video_ids': ""
     }
     return render_template('playlists_new.html',playlist=playlist)
@@ -47,7 +47,7 @@ def playlists_submit():
     playlist = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'videos': videos,
+        'image_url': request.form.get('image_url'),
         'video_ids': video_ids
     }
     playlists.insert_one(playlist)
@@ -79,7 +79,7 @@ def playlists_update(playlist_id):
     updated_playlist = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'videos': videos,
+        'image_url': image_url,
         'video_ids': video_ids
     }
     # set the former playlist to the new one we just updated/edited
